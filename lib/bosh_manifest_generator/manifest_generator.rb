@@ -68,7 +68,7 @@ module BoshManifestGenerator
     end
 
     def create_vault
-      @vault = Vault::Client.new(address: @vault_address, ssl_verify: false)
+      @vault = Vault::Client.new(address: @vault_address)
       if File.exist?(@vault_token_file)
         @vault.token = File.open("#{ENV['HOME']}/.vault-token").read
       else
