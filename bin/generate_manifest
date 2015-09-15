@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require 'bosh_manifest_generator'
+
+if ARGV.length < 3
+  puts "Usage: bundle exec generate_manifest <working_dir> <passwords_template> <manifest_template>"
+  exit 1
+end
+
+@working_dir = ARGV[0]
+@passwords_template = ARGV[1]
+@manifest_template = ARGV[2]
+
+generator = BoshManifestGenerator::ManifestGenerator.new(@working_dir)
+
+generator.render(@passwords_template, "#{@working_dir}/passwords.yml")
+generator.save_key('keys.ssh_key', "#{@working_dir}/microbosh.pem")

@@ -1,0 +1,19 @@
+PATH
+  remote: .
+  specs:
+    bosh_manifest_generator (0.0.1)
+      vault (~> 0.1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    vault (0.1.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bosh_manifest_generator!
+
+BUNDLED WITH
+   1.10.6

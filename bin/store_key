@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require 'bosh_manifest_generator'
+
+if ARGV.length < 2
+  puts 'Usage: bundle exec ruby store-passwords.rb <account_id> <pem_file>'
+  exit 1
+end
+
+@account_id = ARGV[0]
+
+@generator = BoshManifestGenerator::ManifestGenerator.new
+
+@generator.vault_prefix = "secret/aws/#{@account_id}/bosh"
+
+file = File.open(ARGV[1], 'rb')
+val = file.read
+@generator.upload_data('keys.ssh_key', val)
