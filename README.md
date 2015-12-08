@@ -4,7 +4,23 @@ The manifest generator scripts are used to download manifests and merge them wit
 # Installation
 Clone the repo and run ```bundle install```.
 
-# Usage
+# Usage (bosh-deployments)
+Store credentials in vault:
+
+```bash
+bundle exec put_credentials <deployment_name> <environment> <passwords_file>
+```
+
+The script will store all values in the password file (yaml) in vault. It will return the keys used.
+
+Generate credentials file:
+```bash
+bundle exec pull_credentials <deployment_name> <environment> <passwords_template> <out_file>
+```
+
+The command will read a yaml erb template and fill in passwords stored in vault. To get a password out of vault call the ´´´p´´´ function.
+
+# Usage (bosh-init, deprecated)
 Generate manifest file for existing deployment:
 
 ```bash
