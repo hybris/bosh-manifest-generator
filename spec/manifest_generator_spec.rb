@@ -34,6 +34,12 @@ describe BoshManifestGenerator::ManifestGenerator do
       expect(generator.vault_prefix).to eq('secret/aws/123456/bosh')
     end
 
+    it 'returns vault prefix if value is set.' do
+      generator = BoshManifestGenerator::ManifestGenerator
+                  .new(nil, vault_prefix: 'secret/bosh/test/')
+      expect(generator.vault_prefix).to eq('secret/bosh/test/')
+    end
+
     it 'returns vault with token' do
       ENV['VAULT_ADDR'] = 'http://127.0.0.1:8200'
       generator.vault_token_file = File.expand_path('vault_token',

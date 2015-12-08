@@ -11,6 +11,7 @@ module BoshManifestGenerator
       @working_dir = working_dir
       @metadata_file = options[:metadata_file] || "#{@working_dir}/metadata.yml"
       @verify_ssl = options[:verify_ssl] || ENV['VERIFY_SSL']
+      @vault_prefix = options[:vault_prefix]
       read_vault_options(options)
     end
 
