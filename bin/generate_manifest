@@ -3,7 +3,7 @@
 require 'bosh_manifest_generator'
 
 if ARGV.length < 2
-  puts "Usage: bundle exec generate_manifest <working_dir> <passwords_template>"
+  puts 'Usage: bundle exec generate_manifest <working_dir> <passwords_template>'
   exit 1
 end
 
