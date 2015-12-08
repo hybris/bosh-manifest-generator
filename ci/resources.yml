@@ -1,0 +1,14 @@
+resources:
+- name: repository
+  type: git
+  source:
+    uri: {{release-git-repo}}
+    branch: {{release-git-branch}}
+
+- name: docker-image
+  type: docker-image
+  source:
+    email: {{docker-hub-email}}
+    username: {{docker-hub-username}}
+    password: {{docker-hub-password}}
+    repository: {{docker-create-hub-resource-image}}

@@ -1,0 +1,14 @@
+jobs:
+- name: build-image
+  public: true
+  serial: true
+  plan:
+  - get: bosh-manifest-generator
+    resource: repository
+    trigger: false
+    passed: [unit-test]
+  - task: run-build
+    file: bosh-manifest-generator/ci/tasks/build.yml
+  - put: docker-image
+    params:
+      build: run-build

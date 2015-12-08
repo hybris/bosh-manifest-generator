@@ -1,0 +1,10 @@
+jobs:
+- name: unit-test
+  public: true
+  serial: true
+  plan:
+  - get: bosh-manifest-generator
+    resource: repository
+    trigger: true
+  - task: run-test
+    file: bosh-manifest-generator/ci/tasks/build.yml

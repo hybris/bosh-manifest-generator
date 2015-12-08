@@ -1,0 +1,5 @@
+groups:
+- name: Dockerimage
+  jobs:
+  - unit-test
+  - build-image
