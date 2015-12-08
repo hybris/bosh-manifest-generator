@@ -9,3 +9,4 @@ gem install bundler --no-document
 
 bundle install
 bundle exec rspec
+gem build *.gemspec
