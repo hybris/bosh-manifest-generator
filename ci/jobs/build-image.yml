@@ -5,7 +5,7 @@ jobs:
   plan:
   - get: bosh-manifest-generator
     resource: repository
-    trigger: false
+    trigger: true
     passed: [unit-test]
   - task: run-build
     file: bosh-manifest-generator/ci/tasks/build.yml
