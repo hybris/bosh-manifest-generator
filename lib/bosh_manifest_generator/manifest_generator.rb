@@ -38,7 +38,7 @@ module BoshManifestGenerator
     end
 
     def render(template, file)
-      renderer = ERB.new(File.new(template).read)
+      renderer = ERB.new(File.new(template).read, nil, '-')
 
       File.open(file, 'w') do |f|
         f.write renderer.result(binding)
