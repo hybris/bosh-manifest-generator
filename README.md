@@ -2,7 +2,13 @@
 The manifest generator scripts are used to download manifests and merge them with passwords stored in vault.
 
 # Installation
-Clone the repo and run ```bundle install```.
+Clone the repo and run:
+
+```
+bundle install
+gem build bosh_manifest_generator.gemspec
+gem install bosh_manifest_generator-0.0.1.gem
+```
 
 # Usage (bosh-deployments)
 Store credentials in vault:
