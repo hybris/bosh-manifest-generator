@@ -10,6 +10,14 @@ gem build bosh_manifest_generator.gemspec
 gem install bosh_manifest_generator-0.0.1.gem
 ```
 
+# Vault configuration
+Make sure that you configure the following environment variables:
+
+```
+export VAULT_ADDR='https://localhost:8200'
+xport VAULT_SSL_VERIFY=false
+```
+
 # Usage (bosh-deployments)
 Store credentials in vault:
 
