@@ -15,7 +15,7 @@ Make sure that you configure the following environment variables:
 
 ```
 export VAULT_ADDR='https://localhost:8200'
-xport VAULT_SSL_VERIFY=false
+export VAULT_SSL_VERIFY=false
 ```
 
 # Usage (bosh-deployments)
