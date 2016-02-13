@@ -38,10 +38,15 @@ module BoshManifestGenerator
     end
 
     def render(template, file)
-      renderer = ERB.new(File.new(template).read, nil, '-')
+      begin
+        renderer = ERB.new(File.new(template).read, nil, '-')
 
-      File.open(file, 'w') do |f|
-        f.write renderer.result(binding)
+        File.open(file, 'w') do |f|
+          f.write renderer.result(binding)
+        end
+      rescue
+        puts("File #{template} does not exist")
+        exit 1
       end
     end
 
