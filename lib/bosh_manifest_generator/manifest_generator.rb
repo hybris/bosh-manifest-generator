@@ -78,7 +78,12 @@ module BoshManifestGenerator
       if File.exist?(@vault_token_file)
         @vault.token = File.open(@vault_token_file).read
       else
-        @vault.auth.app_id(@vault_app, @vault_user)
+        begin
+          @vault.auth.app_id(@vault_app, @vault_user)
+        rescue
+          puts("Cannot connect to #{@vault_address}")
+          exit 1
+        end
       end
       @vault
     end
