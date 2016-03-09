@@ -38,15 +38,10 @@ module BoshManifestGenerator
     end
 
     def render(template, file)
-      begin
-        renderer = ERB.new(File.new(template).read, nil, '-')
+      renderer = ERB.new(File.new(template).read, nil, '-')
 
-        File.open(file, 'w') do |f|
-          f.write renderer.result(binding)
-        end
-      rescue
-        puts("File #{template} does not exist")
-        exit 1
+      File.open(file, 'w') do |f|
+        f.write renderer.result(binding)
       end
     end
 
@@ -78,12 +73,7 @@ module BoshManifestGenerator
       if File.exist?(@vault_token_file)
         @vault.token = File.open(@vault_token_file).read
       else
-        begin
-          @vault.auth.app_id(@vault_app, @vault_user)
-        rescue
-          puts("Cannot connect to #{@vault_address}")
-          exit 1
-        end
+        @vault.auth.app_id(@vault_app, @vault_user)
       end
       @vault
     end
