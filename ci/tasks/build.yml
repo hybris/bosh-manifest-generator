@@ -5,7 +5,10 @@ image: docker:///ruby#2.2
 
 inputs:
 - name: bosh-manifest-generator
-  path: .
+  path: generator
+
+outputs:
+- name: run-build
 
 run:
-  path: ./ci/scripts/test.sh
+  path: ./generator/ci/scripts/test.sh
