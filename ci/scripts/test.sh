@@ -14,4 +14,4 @@ bundle exec rspec
 gem build *.gemspec
 
 
-gm *.gem ../run-build
+mv *.gem ../run-build
