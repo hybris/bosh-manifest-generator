@@ -11,4 +11,4 @@ jobs:
     file: bosh-manifest-generator/ci/tasks/build.yml
   - put: docker-image
     params:
-      build: run-build
+      build: bosh-manifest-generator
