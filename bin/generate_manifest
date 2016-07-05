@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'bosh_manifest_generator'
+require 'optparse'
 
 if ARGV.length < 2
   puts 'Usage: bundle exec generate_manifest <working_dir> <passwords_template>'
@@ -11,6 +12,14 @@ end
 @passwords_template = ARGV[1]
 
 generator = BoshManifestGenerator::ManifestGenerator.new(@working_dir)
+
+options = {}
+OptionParser.new do |opts|
+  opts.on("-q", "--quiet", "Do not generate passwords") do |q|
+    options[:quiet] = q
+    generator.quiet = options[:quiet]
+  end
+end.parse!
 
 generator.render(@passwords_template, "#{@working_dir}/passwords.yml")
 generator.save_key('keys.ssh_key', "#{@working_dir}/microbosh.pem")

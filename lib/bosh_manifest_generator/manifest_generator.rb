@@ -5,7 +5,7 @@ require 'erb'
 module BoshManifestGenerator
   # ManifestGenerator is used to manage bosh manifest tmeplates.
   class ManifestGenerator
-    attr_accessor :metadata_file, :vault, :vault_token_file, :vault_prefix
+    attr_accessor :metadata_file, :vault, :vault_token_file, :vault_prefix, :quiet
 
     def initialize(working_dir = nil, options = {})
       @working_dir = working_dir
@@ -31,10 +31,18 @@ module BoshManifestGenerator
       @vault || create_vault
     end
 
+    def quiet
+      @quiet
+    end
+
     def p(key)
-      vault_key = "#{vault_prefix}/#{key.gsub(/\./, '/')}"
-      puts('Get key ' + vault_key)
-      vault.logical.read(vault_key).data[:value]
+      if @quiet
+        '"***"'
+      else
+        vault_key = "#{vault_prefix}/#{key.gsub(/\./, '/')}"
+        puts('Get key ' + vault_key)
+        vault.logical.read(vault_key).data[:value]
+      end
     end
 
     def render(template, file)
