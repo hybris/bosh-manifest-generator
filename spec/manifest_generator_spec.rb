@@ -34,6 +34,12 @@ describe BoshManifestGenerator::ManifestGenerator do
       expect(generator.vault_prefix).to eq('secret/aws/123456/bosh')
     end
 
+    it 'returns vault prefix if account_id and vaultdeployment are set in metadata file' do
+      generator.metadata_file = File.expand_path('metadata-vaultdeployment.yml',
+                                                 File.dirname(__FILE__))
+      expect(generator.vault_prefix).to eq('secret/aws/123456/foo')
+    end
+
     it 'returns vault prefix if value is set.' do
       generator = BoshManifestGenerator::ManifestGenerator
                   .new(nil, vault_prefix: 'secret/bosh/test/')

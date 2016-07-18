@@ -23,8 +23,12 @@ module BoshManifestGenerator
       metadata['meta']['aws']['account_id']
     end
 
+    def vaultdeployment
+      metadata['meta']['vaultdeployment']
+    end
+
     def vault_prefix
-      @vault_prefix || "secret/aws/#{account_id}/bosh"
+      @vault_prefix || "secret/aws/#{account_id}/#{vaultdeployment || 'bosh'}"
     end
 
     def vault

@@ -47,11 +47,11 @@ The script is expecting a metadata.yml file including the AWS account id inside 
 Generate and upload passwords to vault:
 
 ```bash
-bundle exec store_passwords <aws_account_id> <aws_secret_key> <aws_key_id> <password_erb_template>
+bundle exec store_passwords <aws_account_id> <vaultdeployment> <aws_secret_key> <aws_key_id> <password_erb_template>
 ```
 
 Upload ssh key to vault:
 
 ```bash
-bundle exec store_key <aws_account_id> <key_file>
+bundle exec ruby store-passwords.rb <account_id> <vaultdeployment> <pem_file>
 ```

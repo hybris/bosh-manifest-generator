@@ -1,0 +1,13 @@
+---
+meta:
+  name: idefixprod
+  vaultdeployment: foo
+  availability_zone: us-east-1a
+  ip_range: 10.36.1.0/24
+  gateway_ip: 10.36.1.1
+  dns:
+  - 10.36.0.2
+  subnet: subnet-e56424bc
+  bosh_ip: 10.36.1.6
+  aws:
+    account_id: '123456'
