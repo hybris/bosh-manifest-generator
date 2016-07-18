@@ -12,5 +12,9 @@ end
 
 generator = BoshManifestGenerator::ManifestGenerator.new(@working_dir)
 
+if ENV['BOSH_MANIFEST_GENERATOR_QUIET'] == 'true'
+  generator.quiet = true
+end
+
 generator.render(@passwords_template, "#{@working_dir}/passwords.yml")
 generator.save_key('keys.ssh_key', "#{@working_dir}/microbosh.pem")

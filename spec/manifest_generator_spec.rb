@@ -94,6 +94,16 @@ describe BoshManifestGenerator::ManifestGenerator do
       FileUtils.rm_rf(@tmp_dir)
     end
 
+    it 'do not show passwords' do
+      @tmp_dir = File.join(File.dirname(__FILE__), 'tmp')
+      FileUtils.mkdir_p(@tmp_dir)
+      generator.quiet = true
+      generator.render(
+        File.expand_path('manifest_tmpl.yml.erb', File.dirname(__FILE__)),
+        "#{@tmp_dir}/manifest.yml")
+      expect(File.open("#{@tmp_dir}/manifest.yml").read).to eq("---\ntest: \"***\"\n")
+    end
+
     it 'stores key file' do
       @tmp_dir = File.join(File.dirname(__FILE__), 'tmp')
       FileUtils.mkdir_p(@tmp_dir)
