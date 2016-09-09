@@ -2,9 +2,8 @@
 
 set -e
 
-TARGET=${TARGET:-"sap"}
+TARGET=${TARGET:-"hybris"}
 PIPELINE_NAME=${PIPELINE_NAME:-"bosh-manifest-generator"}
-CREDENTIALS=${CREDENTIALS:-"credentials.yml"}
 
 if ! [ -x "$(command -v spruce)" ]; then
   echo 'spruce is not installed. Please download at https://github.com/geofffranks/spruce/releases' >&2
@@ -15,6 +14,7 @@ if ! [ -x "$(command -v fly)" ]; then
 fi
 
 PIPELINE=$(mktemp /tmp/pipeline.XXXXX)
+CREDENTIALS=$(mktemp /tmp/credentials.XXXXX)
 
 spruce --concourse merge \
   stub.yml \
@@ -24,4 +24,12 @@ spruce --concourse merge \
   jobs/build-image.yml \
   > ${PIPELINE}
 
-fly -t ${TARGET} set-pipeline -c ${PIPELINE} -l ${CREDENTIALS} -p ${PIPELINE_NAME} -n
+vault read  -field=value -tls-skip-verify secret/bosh/bosh-manifest-generator/concourse > ${CREDENTIALS}
+
+fly -t ${TARGET} set-pipeline -c ${PIPELINE} --load-vars-from=${CREDENTIALS} --pipeline=${PIPELINE_NAME}
+if [ $? -ne 0 ]; then
+  echo "Please login first: fly -t ${TARGET} login -k"
+fi
+
+rm $PIPELINE
+rm $CREDENTIALS
