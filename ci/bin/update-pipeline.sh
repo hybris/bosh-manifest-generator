@@ -24,7 +24,7 @@ spruce --concourse merge \
   jobs/build-image.yml \
   > ${PIPELINE}
 
-vault read  -field=value -tls-skip-verify secret/bosh/bosh-manifest-generator/concourse > ${CREDENTIALS}
+vault read  -field=value -tls-skip-verify secret/concourse/bosh-manifest-generator > ${CREDENTIALS}
 
 fly -t ${TARGET} set-pipeline -c ${PIPELINE} --load-vars-from=${CREDENTIALS} --pipeline=${PIPELINE_NAME}
 if [ $? -ne 0 ]; then
