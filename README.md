@@ -34,6 +34,13 @@ bundle exec pull_credentials <deployment_name> <environment> <passwords_template
 
 The command will read a yaml erb template and fill in passwords stored in vault. To get a password out of vault call the ´´´p´´´ function.
 
+# Build Template
+The ```build_template``` command is used as a more generic template generator not related to bosh at all.
+
+```
+build_template <vault_prefix> <passwords_template> <out_file>
+```
+
 # Usage (bosh-init, deprecated)
 Generate manifest file for existing deployment:
 

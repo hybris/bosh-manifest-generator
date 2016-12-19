@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+require 'bosh_manifest_generator'
+
+if ARGV.length < 3
+  puts 'Usage: bundle exec ruby generate_file '\
+  '<vault_prefix> <passwords_template> <out_file>'
+  exit 1
+end
+
+@prefix = ARGV[0]
+@passwords_template = ARGV[1]
+@out_file = ARGV[2]
+
+generator = BoshManifestGenerator::ManifestGenerator
+            .new(nil,
+                 vault_prefix:
+                  "secret/bosh/#{@deployment_name}/#{@environment}")
+
+generator.render(@passwords_template, @out_file)
