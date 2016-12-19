@@ -2,15 +2,20 @@
 
 require 'bosh_manifest_generator'
 
-if ARGV.length < 3
+if ARGV.length < 2
   puts 'Usage: bundle exec ruby generate_file '\
-  '<vault_prefix> <passwords_template> <out_file>'
+  '<passwords_template> <out_file>'
   exit 1
 end
 
-@prefix = ARGV[0]
-@passwords_template = ARGV[1]
-@out_file = ARGV[2]
+@prefix = ENV['VAULT_PREFIX']
+if !@prefix || @prefix.empty?
+  puts 'VAUTL_PREFIX not set'
+  exit 1
+end
+
+@passwords_template = ARGV[0]
+@out_file = ARGV[1]
 
 generator = BoshManifestGenerator::ManifestGenerator
             .new(nil,
