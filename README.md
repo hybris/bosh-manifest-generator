@@ -39,7 +39,7 @@ The ```build_template``` command is used as a more generic template generator no
 
 ```
 export VAULT_PREFIX=secret/foo/bar
-build_template <passwords_template> <out_file>
+build_template <passwords_templates> <out_folder>
 ```
 
 # Usage (bosh-init, deprecated)
