@@ -38,7 +38,8 @@ The command will read a yaml erb template and fill in passwords stored in vault.
 The ```build_template``` command is used as a more generic template generator not related to bosh at all.
 
 ```
-build_template <vault_prefix> <passwords_template> <out_file>
+export VAULT_PREFIX=secret/foo/bar
+build_template <passwords_template> <out_file>
 ```
 
 # Usage (bosh-init, deprecated)
