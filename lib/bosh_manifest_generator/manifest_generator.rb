@@ -85,7 +85,7 @@ module BoshManifestGenerator
       if File.exist?(@vault_token_file)
         @vault.token = File.open(@vault_token_file).read
       else
-        @vault.auth.app_id(@vault_app, @vault_user)
+        @vault.auth.approle(@vault_app, @vault_user)
       end
       @vault
     end

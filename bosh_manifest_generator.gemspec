@@ -15,5 +15,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
   spec.add_development_dependency 'rspec', '~>3.4.0'
   spec.add_development_dependency 'simplecov', '~>0.11.0'
-  spec.add_runtime_dependency 'vault', '~> 0.1'
+  spec.add_runtime_dependency 'vault', '~> 0.9'
 end

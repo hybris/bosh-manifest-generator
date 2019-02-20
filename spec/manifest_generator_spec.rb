@@ -42,8 +42,8 @@ describe BoshManifestGenerator::ManifestGenerator do
 
     it 'returns vault prefix if value is set.' do
       generator = BoshManifestGenerator::ManifestGenerator
-                  .new(nil, vault_prefix: 'secret/bosh/test/')
-      expect(generator.vault_prefix).to eq('secret/bosh/test/')
+                  .new(nil, vault_prefix: 'secret/idefix/riemann-deployments/test/')
+      expect(generator.vault_prefix).to eq('secret/idefix/riemann-deployments/test/')
     end
 
     it 'returns vault with token' do
